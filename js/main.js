@@ -68,13 +68,24 @@ const cor = document.querySelectorAll(".cor_robo");
 cor.forEach((elemento) => {
     elemento.addEventListener("click", (evento)=>{
         escolheCor(evento.target.id)
-        console.log(escolheCor)
+        escolheCorFavicon(evento.target.id)
     })
 })
 
 function escolheCor(escolha){
     const mudacor = document.getElementById("robotron");
     mudacor.src = "img/robotron/rob-"+escolha+".png";
+}
+
+function escolheCorFavicon(escolha){
+    const favicon = document.querySelector('link[rel="shortcut icon"]');
+    const newFavicon = document.createElement('link');
+    newFavicon.rel = 'shortcut icon'
+    newFavicon.type = 'image/x-icon'
+    newFavicon.href = "img/favicon/fav-"+escolha+".ico";
+
+    document.head.appendChild(newFavicon);
+    document.head.removeChild(favicon);
 }
 
 
