@@ -1,17 +1,6 @@
 const controle = document.querySelectorAll("[data-controle]")
 
-// const controle: (traz a lista de todos os + e - do HTML)
-// 0: buttom.controle-ajuste
-// 1: buttom.controle-ajuste
-// 2: buttom.controle-ajuste
-// 3: buttom.controle-ajuste
-// 4: buttom.controle-ajuste
-// 5: buttom.controle-ajuste
-// 6: buttom.controle-ajuste
-// 7: buttom.controle-ajuste
-// 8: buttom.controle-ajuste
-// 9: buttom.controle-ajuste
-const estatisticas = document.querySelectorAll("[data-estatistica]")
+const estatistica = document.querySelectorAll("[data-estatistica]")
 
 const pecas = {
     "bracos": {
@@ -47,7 +36,12 @@ const pecas = {
     }
 }
 
-
+controle.forEach((elemento) => {
+    elemento.addEventListener("click", (evento) => {
+        manipulaDados(evento.target.dataset.controle, evento.target.parentNode);
+        atualizaEstatistica(evento.target.dataset.peca, evento.target.dataset.controle);
+    })
+})
 
 function manipulaDados(operacao, controle) {
     const peca = controle.querySelector("[data-contador]"); //contador que mostra os números entre o - e o +, contador de peças
@@ -59,18 +53,29 @@ function manipulaDados(operacao, controle) {
     }
 }
 
-function atualizaEstatisticas(peca) {
-    estatisticas.forEach( (elemento) => {
-        elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica]
+function atualizaEstatistica(peca, operacao) {
+    estatistica.forEach((elemento) => {
+        if(operacao === "-"){
+            elemento.textContent = parseInt(elemento.textContent) - pecas[peca][elemento.dataset.estatistica]
+        } else{
+            elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica]
+        }
     })
 }
 
-controle.forEach( (elemento) => {
-    elemento.addEventListener("click", (evento) => {
-        manipulaDados(evento.target.dataset.controle, evento.target.parentNode)
-        atualizaEstatisticas(evento.target.dataset.peca)
+const cor = document.querySelectorAll(".cor_robo");
+
+cor.forEach((elemento) => {
+    elemento.addEventListener("click", (evento)=>{
+        escolheCor(evento.target.id)
+        console.log(escolheCor)
     })
 })
+
+function escolheCor(escolha){
+    const mudacor = document.getElementById("robotron");
+    mudacor.src = "img/robotron/rob-"+escolha+".png";
+}
 
 
 

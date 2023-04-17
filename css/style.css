@@ -29,6 +29,42 @@ main {
     gap: 1vw;
 }
 
+.botoes{
+    display: flex;
+    gap: 0.5em;
+}
+
+#preto{
+    background-color: rgb(15, 14, 14);
+}
+
+#azul{
+    background-color: rgb(38, 38, 168);
+}
+
+#vermelho{
+    background-color: rgb(209, 44, 44);
+}
+
+#amarelo{
+    background-color: rgb(233, 233, 49);
+}
+
+#branco {
+    background-color: rgb(241, 241, 241);
+}
+
+#rosa {
+    background-color: rgb(245, 135, 154);
+}
+
+.cor_robo{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    z-index:999;
+}
+
 .robotron {
     background: url(../img/estrutura.png) no-repeat;
     background-position: center center;
